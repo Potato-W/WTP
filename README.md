@@ -1,4 +1,4 @@
-# WTP Way To Promote
+# WTP - The Way To Promote
 
 In the first stage of the career of a software engineer, there are many things to learn. 
 
