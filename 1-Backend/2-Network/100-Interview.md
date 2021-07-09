@@ -68,22 +68,47 @@
   | 5XX | 服务端错误 |
 
 - HTTP/1.0 HTTP/1.1 HTTP/2.0 HTTP/3.0  
-  HTTP/1.1 新加：  
+  HTTP/1.1 vs HTTP/1.0：  
   · Host. 一个服务器支持多个Web  
   · 长连接。 默认为Connection: keep-alive  
   · 断点续传  
   · 身份认证， 状态管理，Cache缓存
   
+  HTTP/2.0  
+  
+  
   
 - DNS  
 - 网站访问速度慢的问题排查  
 - Cookie vs Session  
-- 请求网站的过程，以www.baidu.com为例  
+  Cookie存于客户端，跟踪会话，存储用户偏好/用户密码等信息，不安全    
+  Session存于服务端，跟踪会话，相对安全  
+  
+- **请求网站的过程，以www.baidu.com为例**  
+  URL解析 -> DNS查询 -> TCP/IP连接 -> HTTP请求 -> 响应请求 -> 页面渲染 -> TCP断开连接
+  
+  Ref: [浅析从URL输入到页面展现到底发生什么](https://juejin.cn/post/6982405024630439973)
 
 ## 3. 传输层 <a name="传输层"></a>
-- 三次握手和四次挥手
+- 三次握手和四次挥手  
+  _三次握手_  
+  1. 客户端向服务端发送标识SYN，seq=x，进入SYN_SENT  
+  2. 服务端收到请求，发送标识SYN/ACK，seq=y，ack=x+1, 进入SYN_RECV  
+  3. 客户端收到响应，发送标识ACK，seq=x+1, ack=y+1, 进入ESTABLISHED  
+  SYN: Synchronize Sequence Numbers  
+  
+  _四次挥手_  
+  1. 客户端发送释放连接报文，标识FIN,seq=u，进入FIN_WAIT_1
+  2. 服务端收到请求，发送标识ACK，seq=v，ack=u+1,进入CLOSE_WAIT(半关闭)  
+  3. 客户端进入FIN_WAIT_2，等待服务端发送完毕所有数据  
+  4. 服务端发送完毕所有数据，发送释放报文，标识FIN，seq=w，ack=u+1, 进入LAST-ACK  
+  5. 客户端收到报文，发送确认，标识ACK，seq=u+1，ack=w+1，进入TIME_WAIT。等待2MSL后，进入CLOSE  
+  6. 服务端收到报文，立即进入CLOSE  
+- 三次握手和四次挥手  
+- 三次握手和四次挥手 
+- 三次握手和四次挥手  
 - 为什么要三次握手
-- 为什么要四次握手
+- 为什么要四次挥手
 - 如果缺失一次握手呢
 - CLOSE-WAIT和TIME-WAIT
 - 为什么是2MSL
