@@ -142,9 +142,10 @@
 - TCP VS UDP
 - 为什么TCP是可靠的
 - 为什么UDP是不可靠的
-- 滑动窗口
-- TCP超时重传
-- TCP拥塞控制
+- TCP 滑动窗口 超时重传 拥塞控制  
+ 
+ Ref： [TCP 重传、滑动窗口、流量控制、拥塞控制](https://www.cnblogs.com/xiaolincoding/p/12732052.html)
+
 - Ping命令以及用到的协议
 - 网络通信的多路复用
 - ack的意义，延迟ack的意义
